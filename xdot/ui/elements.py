@@ -575,9 +575,7 @@ class Graph(Shape):
     def _draw_edges(self, cr, bounding, highlight_items):
         for edge in self.edges:
             if bounding is None or edge._intersects(bounding):
-                should_highlight = any(e in highlight_items
-                                       for e in (edge, edge.src, edge.dst))
-                edge._draw(cr, highlight=should_highlight, bounding=bounding)
+                edge._draw(cr, highlight=(edge in highlight_items), bounding=bounding)
 
     def draw(self, cr, highlight_items=None, bounding=None):
         if bounding is not None:
